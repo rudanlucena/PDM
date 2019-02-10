@@ -18,8 +18,8 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".CadastroActivity" />
-        <activity android:name=".GerenciarLigasActivity" />
-        <activity android:name=".AdicionarLigaActivity"></activity>
+        <activity android:name=".admin.GerenciarLigasActivity" />
+        <activity android:name=".admin.AdicionarLigaActivity"></activity>
     </application>
 
 </manifest>

@@ -1,9 +1,11 @@
-package com.example.rudan.amadoresfc;
+package com.example.rudan.amadoresfc.admin;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.rudan.amadoresfc.R;
 
 public class GerenciarLigasActivity extends AppCompatActivity {
 

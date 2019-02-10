@@ -1,4 +1,4 @@
-package com.example.rudan.amadoresfc;
+package com.example.rudan.amadoresfc.admin;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.rudan.amadoresfc.R;
+import com.example.rudan.amadoresfc.admin.GerenciarLigasActivity;
 
 public class AdicionarLigaActivity extends AppCompatActivity {
 

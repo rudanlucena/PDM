@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Spinner spinnerEstados =  findViewById(R.id.spinnerEstados);
         Spinner spinnerCidades =  findViewById(R.id.spinnerCidades);
         Spinner spinnerLigas =  findViewById(R.id.spinnerLigas);
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerLigas.setAdapter(adapterLigas);
     }
 
-    public void entrar(View view){
+    public void gerenciar(View view){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
