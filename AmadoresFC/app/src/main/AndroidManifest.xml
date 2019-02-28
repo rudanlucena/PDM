@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rudan.amadoresfc">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,17 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".user.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".CadastroActivity" />
-        <activity android:name=".GerenciarLigasActivity" />
-        <activity android:name=".AdicionarLigaActivity"></activity>
+        <activity android:name=".user.LoginActivity" />
+        <activity android:name=".user.CadastroActivity" />
+        <activity android:name=".admin.GerenciarLigasActivity" />
+        <activity android:name=".admin.AdicionarLigaActivity" />
+        <activity android:name=".user.TabelaActivity" />
+        <activity android:name=".admin.MenuActivity" />
+        <activity android:name=".admin.GerenciarClubesActivity" />
+        <activity android:name=".admin.AdicionarClubeActivity" />
+        <activity android:name=".admin.GerenciarRodadasActivity" />
+        <activity android:name=".admin.GerenciarPartidasActivity" />
+        <activity android:name=".user.ClassificacaoActivity" />
+        <activity android:name=".admin.GerenciarRankingActivity"></activity>
+        <service android:name=".service.RankingService"></service>
     </application>
 
 </manifest>
