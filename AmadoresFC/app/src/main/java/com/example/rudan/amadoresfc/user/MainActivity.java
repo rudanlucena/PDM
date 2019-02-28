@@ -1,11 +1,17 @@
-package com.example.rudan.amadoresfc;
+package com.example.rudan.amadoresfc.user;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.example.rudan.amadoresfc.R;
+import com.example.rudan.amadoresfc.admin.GerenciarLigasActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +41,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gerenciar(View view){
-        Intent intent = new Intent(this, LoginActivity.class);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        //verifica usuario logado.
+        if(auth.getCurrentUser()!=null){
+            Log.d("idUsuario", auth.getCurrentUser().getUid());
+            Toast.makeText(this, "Logado", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, GerenciarLigasActivity.class);
+            startActivity(intent);
+        }
+        else{
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+        //auth.signOut();
+
+    }
+
+    public void selecionarLiga(View view){
+        Intent intent = new Intent(this, TabelaActivity.class);
         startActivity(intent);
     }
 }

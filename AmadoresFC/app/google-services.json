@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "71710540824",
+    "firebase_url": "https://fir-app-48b39.firebaseio.com",
+    "project_id": "fir-app-48b39",
+    "storage_bucket": "fir-app-48b39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71710540824:android:fe56c6f3e6ed18a0",
+        "android_client_info": {
+          "package_name": "com.example.rudan.amadoresfc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71710540824-ahtf821la6bpnhntkdq4d2cbg349m4gk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rudan.amadoresfc",
+            "certificate_hash": "b6b22a6ec66d6dfb475df3b00983b1bcb3c92fa0"
+          }
+        },
+        {
+          "client_id": "71710540824-p569rb5fiul954hcok9qgeicdpa890in.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdbH8Rj-7LBPffkEwdTq4OlmSIke_Ybzo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71710540824-p569rb5fiul954hcok9qgeicdpa890in.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

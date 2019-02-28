@@ -12,7 +12,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.rudan.amadoresfc.R;
+import com.example.rudan.amadoresfc.adapter.ClubeAdapter;
 import com.example.rudan.amadoresfc.adapter.LigaAdapter;
+import com.example.rudan.amadoresfc.model.Clube;
 import com.example.rudan.amadoresfc.model.Liga;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,38 +27,45 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GerenciarLigasActivity extends AppCompatActivity {
+public class GerenciarClubesActivity extends AppCompatActivity {
+    String keyLiga;
 
-    private ListView listLigas;
-    private List<Liga> ligas;
+    private ListView listClubes;
+    private List<Clube> clubes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gerenciar_ligas);
-        listLigas = findViewById(R.id.listLigas);
-        ligas = new ArrayList<>();
+        setContentView(R.layout.activity_gerenciar_clubes);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        keyLiga = getIntent().getStringExtra("keyLiga");
+        clubes = new ArrayList<>();
+
+        Toast.makeText(this, keyLiga, Toast.LENGTH_SHORT).show();
+        listClubes = findViewById(R.id.listClubes);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference("estados").child("CE").child("cidades").child("Mauriti").child("ligas");
-        Query ligaPesquisa = dr.orderByChild("admin").equalTo(auth.getCurrentUser().getUid());
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference("estados").child("CE").child("cidades").child("Mauriti").child("ligas").child(keyLiga).child("clubes");
 
-        ligaPesquisa.addValueEventListener(new ValueEventListener() {
+        //Query ligaPesquisa = dr.orderByChild("admin").equalTo(auth.getCurrentUser().getUid());
+
+        dr.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                clubes.clear();
                 //Log.d("Firebase: ", dataSnapshot.getValue().toString());
                 //ligas.add(dataSnapshot.getValue().toString());
-                ligas.clear();
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Liga liga = postSnapshot.getValue(Liga.class);
-                    liga.setKey(postSnapshot.getKey());
+                    Clube clube = postSnapshot.getValue(Clube.class);
+                    clube.setKeyClube(postSnapshot.getKey());
                     Log.d("Keys", postSnapshot.getKey());
-                    ligas.add(liga);
-                    Log.d("Get Data", liga.toString());
+                    clubes.add(clube);
+                    Log.d("Get Data", clube.toString());
                 }
-                exibirLigas();
+                exibirClubes();
             }
 
             @Override
@@ -64,32 +73,22 @@ public class GerenciarLigasActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
-    public void exibirLigas(){
+    public void exibirClubes(){
 
-        listLigas.setAdapter(new LigaAdapter(this, ligas));
+        listClubes.setAdapter(new ClubeAdapter(this, clubes));
 
-        listLigas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listClubes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Liga liga = (Liga) listLigas.getItemAtPosition(position);
-                String key = liga.getKey();
-                Toast.makeText(GerenciarLigasActivity.this, key, Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-                intent.putExtra("keyLiga", key);
-                startActivity(intent);
+                Clube clube = (Clube) listClubes.getItemAtPosition(position);
+                String key = clube.getKeyClube();
+                Toast.makeText(GerenciarClubesActivity.this, key, Toast.LENGTH_SHORT).show();
             }
 
         });
 
-    }
-
-    public void adicionarLiga(View view){
-        Intent intent = new Intent(getApplicationContext(), AdicionarLigaActivity.class);
-        startActivity(intent);
     }
 
     @Override
@@ -100,5 +99,11 @@ public class GerenciarLigasActivity extends AppCompatActivity {
             return  true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void adicionarClube(View view){
+        Intent intent = new Intent(this, AdicionarClubeActivity.class);
+        intent.putExtra("keyLiga", keyLiga);
+        startActivity(intent);
     }
 }
